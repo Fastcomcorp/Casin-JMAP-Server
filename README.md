@@ -35,6 +35,17 @@ Traditional scheduling platforms often rely on synchronous HTTP polling, which c
 
 ---
 
+## 📡 ArcRTC: Offline Peer-to-Peer Mesh Sync
+One of the most critical failures of legacy scheduling software is losing sync when field workers enter dead zones (e.g., hospital basements, rural logistics routes). Casin solves this using the proprietary **ArcRTC Protocol**.
+
+If a worker loses cellular connection:
+1. **Signaling:** Before losing service, the Elixir cluster provides WebRTC ICE candidates to all workers on the same shift.
+2. **Mesh Network:** Devices automatically discover each other via Local Wi-Fi Direct or Bluetooth and form an encrypted UDP mesh network.
+3. **Peer-to-Peer Sync:** Shift changes, clock-ins, and task completions are synced directly from phone-to-phone.
+4. **Reconciliation:** The moment *any* single device in the mesh regains cellular service, it acts as a relay, pushing the entire mesh's state back to the Casin Server for PostgreSQL reconciliation.
+
+---
+
 ## 🧠 The Split-Brain Architecture
 
 ```mermaid
