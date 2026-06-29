@@ -30,7 +30,7 @@ Traditional scheduling platforms often rely on synchronous HTTP polling, which c
 * **Mathematical Double-Booking Protection:** Utilizes PostgreSQL GiST Range Types to physically prevent double-booking at the database level.
 * **JMAP Native (RFC 8620):** Highly optimized JSON payloads reduce bandwidth by up to 80% compared to REST.
 * **100% Market Sync Coverage:** Silently syncs shifts directly to employees' personal Apple iCloud, Google Workspace, and Microsoft 365 calendars.
-* **ArcRTC Offline Sync:** If field workers lose cell service, schedules sync locally via encrypted WebRTC UDP mesh networks.
+* **ArcRTC Offline Sync:** If field workers lose cell service, schedules sync locally via proprietary, encrypted ArcRTC UDP mesh networks.
 * **Massive Concurrency:** The Elixir cluster easily manages 300,000+ simultaneous WebSockets.
 
 ---
@@ -39,7 +39,7 @@ Traditional scheduling platforms often rely on synchronous HTTP polling, which c
 One of the most critical failures of legacy scheduling software is losing sync when field workers enter dead zones (e.g., hospital basements, rural logistics routes). Casin solves this using the proprietary **ArcRTC Protocol**.
 
 If a worker loses cellular connection:
-1. **Signaling:** Before losing service, the Elixir cluster provides WebRTC ICE candidates to all workers on the same shift.
+1. **Signaling:** Before losing service, the Elixir cluster provisions ArcRTC connection parameters to all workers on the same shift.
 2. **Mesh Network:** Devices automatically discover each other via Local Wi-Fi Direct or Bluetooth and form an encrypted UDP mesh network.
 3. **Peer-to-Peer Sync:** Shift changes, clock-ins, and task completions are synced directly from phone-to-phone.
 4. **Reconciliation:** The moment *any* single device in the mesh regains cellular service, it acts as a relay, pushing the entire mesh's state back to the Casin Server for PostgreSQL reconciliation.
