@@ -136,7 +136,7 @@ This project is open-source and licensed under the **GNU Affero General Public L
 See the [LICENSE](LICENSE) file for the full legal text.
 
 ### Commercial Licensing
-For enterprise usage without the AGPL v3 open-source restrictions, **Commercial Licenses are available.** If you wish to integrate the Casin JMAP Server into your proprietary backend without being forced to open-source your own code, please contact Fastcomcorp, LLC for commercial pricing.
+For enterprise usage without the AGPL v3 open-source restrictions, **Commercial Licenses are available.** If you wish to integrate the Casin JMAP Server into your proprietary backend without being forced to open-source your own code, please contact **licensing@fastcomcorp.com** for commercial pricing.
 
 ### Contributing & CLA Requirement
 We welcome community contributions! However, to protect the intellectual property of this project, all contributors must sign a **Contributor License Agreement (CLA)** before any code can be accepted or merged. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.

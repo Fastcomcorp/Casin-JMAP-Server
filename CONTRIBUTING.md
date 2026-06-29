@@ -13,3 +13,6 @@ Before opening a Pull Request, please ensure you have completed the Fastcomcorp 
 
 ## License
 By contributing, you agree that your contributions will be licensed under the AGPL v3 License.
+
+## Commercial Licensing & Inquiries
+If your enterprise is interested in a Commercial License to bypass the AGPL v3 open-source requirements, or if you have any questions regarding intellectual property and CLA terms, please contact: **licensing@fastcomcorp.com**
