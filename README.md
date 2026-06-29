@@ -68,6 +68,23 @@ cd casin-jmap-server
 
 ---
 
+## ⚙️ System Requirements
+For production deployments, Casin requires the following minimum specifications and versions to handle the intended scale:
+
+### Software Requirements
+* **PostgreSQL:** `>= 15.0` (Required for advanced GiST Exclusion Constraint features)
+* **NATS JetStream:** `>= 2.9.0` (Required for guaranteed delivery semantics)
+* **Rust:** `>= 1.70`
+* **Elixir:** `>= 1.15` (Erlang/OTP 25+)
+
+### Minimum Hardware (Production Scale)
+To support 10,000+ concurrent users with sub-millisecond response times, we recommend the following minimum hardware per node:
+* **Rust API Gateway:** 2 vCPU, 4GB RAM
+* **Elixir WebSocket Cluster:** 4 vCPU, 8GB RAM (Scales horizontally)
+* **PostgreSQL Database:** 4 vCPU, 16GB RAM, SSD Storage (Critical for GiST index performance)
+
+---
+
 ## 🌐 Ports & Networking
 When deploying to AWS or configuring local firewalls, ensure the following ports are accounted for:
 
