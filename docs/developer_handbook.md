@@ -58,7 +58,40 @@ They serialize standard JMAP JSON payloads into a binary envelope and fire them 
 
 ---
 
-## 5. Troubleshooting Guide
+## 5. Local Setup & Testing
+
+Before contributing to the Casin JMAP Server, you must be able to boot the stack and pass the security test suite locally.
+
+### Prerequisites
+* **Rust:** `v1.70+`
+* **Elixir:** `v1.15+` (Erlang/OTP 25+)
+* **PostgreSQL:** `v15.0+` (Running locally on port 5432)
+* **NATS Server:** `v2.9.0+` (Running locally on port 4222)
+
+### Booting the Stack
+Do not hardcode database passwords into the source code. Export your credentials in your shell environment before running the startup script:
+
+```bash
+# 1. Export local DB credentials
+export JMAP_DATABASE_URL="postgres://your_user:your_password@127.0.0.1:5432/casin_jmap"
+export DATABASE_URL="postgres://your_user:your_password@127.0.0.1:5432/casin_jmap"
+
+# 2. Boot both Rust and Elixir services
+./start.sh
+```
+
+### Running the Fuzz Tests (Required)
+Because Casin handles dynamic JSON payloads from millions of external users, the JSON parsing boundary is the most vulnerable attack vector. If you modify any JMAP object struct, you **must** run the fuzz tester to ensure you haven't introduced a panic/memory exhaustion vulnerability.
+
+```bash
+cd rust-services/jmap-scheduler
+cargo run --bin fuzz_jmap_parser
+```
+*Note: This script will blast the parser with millions of mutated, highly-nested malicious JSON objects. It must complete without panicking before you open a Pull Request.*
+
+---
+
+## 6. Troubleshooting Guide
 
 If the system degrades in production, follow this matrix:
 
