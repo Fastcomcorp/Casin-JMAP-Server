@@ -103,6 +103,7 @@ When deploying to AWS or configuring local firewalls, ensure the following ports
 | :--- | :--- | :--- | :--- | :--- |
 | **Rust Axum (JMAP)** | `3000` | TCP / HTTPS | **Public** | Main API Gateway for mobile apps (Requires JWT). |
 | **Elixir Phoenix** | `4000` | TCP / WSS | **Public** | WebSocket secure connections for real-time sync. |
+| **ArcRTC Relay** | `50000-60000` | UDP | **Public** | Dynamic port range for ArcRTC media transport and mesh signaling. |
 | **PostgreSQL** | `5432` | TCP | *Internal VPC* | Database storage and GiST logic. |
 | **NATS JetStream** | `4222` | TCP | *Internal VPC* | Internal messaging firehose. |
 | **Elixir libcluster**| `45892`| UDP Multicast| *Internal VPC* | Mesh networking protocol for Elixir nodes. |
