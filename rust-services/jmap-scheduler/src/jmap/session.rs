@@ -26,7 +26,13 @@ pub async fn handle_session(user: JmapUser) -> impl IntoResponse {
                     "i;unicode-casemap"
                 ]
             },
-            "urn:ietf:params:jmap:calendars": {}
+            "urn:ietf:params:jmap:calendars": {},
+            // Proprietary Watermark Capability
+            "urn:fastcomcorp:params:jmap:casin:core": {
+                "version": "0.1.0-AGPL",
+                "proprietary": true,
+                "license": "GNU AGPL v3.0"
+            }
         },
         "accounts": {
             "default_account_id": {
