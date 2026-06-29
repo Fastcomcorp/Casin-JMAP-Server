@@ -12,13 +12,20 @@ mod jmap;
 mod models;
 mod nats;
 
-use axum::{routing::{get, post}, Router};
+use axum::{routing::{get, post}, Router, response::Response, middleware::map_response};
+use axum::http::HeaderValue;
 use sqlx::postgres::PgPoolOptions;
 use std::env;
 use std::net::SocketAddr;
 use tower_http::cors::{CorsLayer, Any, AllowOrigin};
 use axum::http::{Method, header::{AUTHORIZATION, CONTENT_TYPE, ACCEPT}};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+
+// Middleware to inject the "Canary" watermark into every HTTP response
+async fn inject_canary_header(mut response: Response) -> Response {
+    response.headers_mut().insert("X-Powered-By", HeaderValue::from_static("Fastcomcorp-Casin-Engine"));
+    response
+}
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
@@ -50,7 +57,8 @@ async fn main() -> anyhow::Result<()> {
     let app = Router::new()
         .route("/.well-known/jmap", get(jmap::session::handle_session))
         .route("/jmap", post(jmap::methods::handle_jmap))
-        .layer(cors);
+        .layer(cors)
+        .layer(map_response(inject_canary_header));
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     tracing::debug!("Listening on {}", addr);
